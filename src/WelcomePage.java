@@ -25,11 +25,13 @@ public class WelcomePage extends JPanel {
     }
 
     private void showLandingPage() {
+        // this just clears the previous frame, and add the new components to it
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
 
-        LandingPage landingPage = new LandingPage(frame);
+        // calling the landing page. already initialized at the top of the code
+        landingPage = new LandingPage(frame);
         frame.getContentPane().add(landingPage);
 
         frame.setVisible(true);

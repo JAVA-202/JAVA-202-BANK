@@ -45,6 +45,7 @@ public class LandingPage extends JPanel {
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
 
+        // pass the next page in here. for savings and current page
         JLabel welcomeLabel = new JLabel("Welcome to the Bank App!");
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
