@@ -50,7 +50,20 @@ public class LandingPage extends JPanel {
         welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         frame.getContentPane().add(welcomeLabel);
-
+        showAccountType();
         frame.setVisible(true);
     }
+
+    private void showAccountType(){
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+
+
+        AccountType accountType = new AccountType(frame);
+        frame.getContentPane().add(accountType);
+        frame.setVisible(true);
+    }
+
+
 }
