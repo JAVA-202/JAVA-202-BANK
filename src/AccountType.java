@@ -19,8 +19,9 @@ public class AccountType extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // perfoms actions for saving account
-                JOptionPane.showMessageDialog(frame,"YOU HAVE SELECTED SAVING ACCOUNT.");
+//                JOptionPane.showMessageDialog(frame,"YOU HAVE SELECTED SAVING ACCOUNT.");
                 // TODO:Implement actions for saving account
+                showSavingsPage();
             }
         });
 
@@ -37,6 +38,17 @@ public class AccountType extends JPanel{
         add(savingButton);
         add(currentButton);
 
+    }
+
+    private void showSavingsPage(){
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+
+
+        SavingsPage savingsPage = new SavingsPage(frame);
+        frame.getContentPane().add(savingsPage);
+        frame.setVisible(true);
     }
 
 }
