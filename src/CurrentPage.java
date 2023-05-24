@@ -45,5 +45,14 @@ public class CurrentPage extends JPanel {
         frame.setVisible(true);
     }
 
+    private void showWithdrawalPage(){
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
 
+// creating an object
+        WithdrawalPage withdrawalPage = new WithdrawalPage(frame);
+        frame.getContentPane().add(withdrawalPage);
+        frame.setVisible(true);
+    }
 }
