@@ -3,24 +3,21 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AccountType extends JPanel{
+public class AccountType extends JPanel {
     private JFrame frame;
 
-    public AccountType(JFrame frame){
+    public AccountType(JFrame frame) {
         this.frame = frame;
         setLayout(new FlowLayout());
 
         JLabel selectAccountLabel = new JLabel("SELECT ACCOUNT TYPE");
-        setSize(400,400);
+        setSize(400, 400);
         JButton savingButton = new JButton("SAVING ACCOUNT ");
         JButton currentButton = new JButton("CURRENT ACCOUNT");
 
         savingButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // perfoms actions for saving account
-//                JOptionPane.showMessageDialog(frame,"YOU HAVE SELECTED SAVING ACCOUNT.");
-                // TODO:Implement actions for saving account
                 showSavingsPage();
             }
         });
@@ -28,9 +25,7 @@ public class AccountType extends JPanel{
         currentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // perfoms actions for current account
-                JOptionPane.showMessageDialog(frame,"YOUR HAVE SELECTED CURRENT ACCOUNT");
-                // TODO:Implemnt actions for current account
+                showCurrentPage();
             }
         });
 
@@ -40,7 +35,7 @@ public class AccountType extends JPanel{
 
     }
 
-    private void showSavingsPage(){
+    private void showSavingsPage() {
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
@@ -50,5 +45,19 @@ public class AccountType extends JPanel{
         frame.getContentPane().add(savingsPage);
         frame.setVisible(true);
     }
+
+
+    private void showCurrentPage() {
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+        frame.getContentPane().repaint();
+
+
+        CurrentPage currentPage = new CurrentPage(frame);
+        frame.getContentPane().add(currentPage);
+        frame.setVisible(true);
+
+    }
+
 
 }
