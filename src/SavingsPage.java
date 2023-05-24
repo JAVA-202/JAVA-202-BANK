@@ -25,6 +25,7 @@ public class SavingsPage extends JPanel {
             }
         });
         add(depositButton);
+        add(withdrawalButton);
         }
 
     private void showDepositPage(){
@@ -37,5 +38,5 @@ public class SavingsPage extends JPanel {
         frame.getContentPane().add(depositPage);
         frame.setVisible(true);
     }
-    }
 
+    }
