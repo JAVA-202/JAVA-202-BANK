@@ -4,35 +4,53 @@ import java.awt.event.*;
 
 public class WelcomePage extends JPanel {
     private JFrame frame;
-    private LandingPage landingPage;
 
     public WelcomePage(JFrame frame) {
         this.frame = frame;
         setLayout(new BorderLayout());
 
-        JLabel welcomeLabel = new JLabel("Welcome to the Bank App!");
-        welcomeLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(welcomeLabel, BorderLayout.CENTER);
+        JLabel titleLabel = new JLabel("Welcome");
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
 
-        JButton goToLoginPageButton = new JButton("Go to Landing Page");
-        goToLoginPageButton.addActionListener(new ActionListener() {
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+
+        // SAVINGS BUTTON
+        JButton savingsButton = new JButton("Savings");
+        savingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showLandingPage();
+                showAccountPage("Savings");
             }
         });
-        add(goToLoginPageButton, BorderLayout.SOUTH);
+        buttonPanel.add(savingsButton);
+
+        // CURRENT BUTTON
+        JButton currentButton = new JButton("Current");
+        currentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                showAccountPage("Current");
+            }
+        });
+        buttonPanel.add(currentButton);
+
+        add(buttonPanel, BorderLayout.CENTER);
     }
 
-    private void showLandingPage() {
-        // this just clears the previous frame, and add the new components to it
+    private void showAccountPage(String accountType) {
         frame.getContentPane().removeAll();
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
 
-        // calling the landing page. already initialized at the top of the code
-        landingPage = new LandingPage(frame);
-        frame.getContentPane().add(landingPage);
+        if (accountType.equals("Savings")) {
+            SavingsPage savingsPage = new SavingsPage(frame);
+            frame.getContentPane().add(savingsPage);
+
+        } else if (accountType.equals("Current")) {
+            CurrentPage currentPage = new CurrentPage(frame);
+            frame.getContentPane().add(currentPage);
+        }
 
         frame.setVisible(true);
     }

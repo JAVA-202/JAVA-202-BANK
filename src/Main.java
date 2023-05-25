@@ -10,12 +10,12 @@ public class Main {
     }
 
     private static void createAndShowGUI() {
-        JFrame frame = new JFrame("Welcome");
+        JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(300, 200);
 
-        WelcomePage welcomePage = new WelcomePage(frame);
-        frame.getContentPane().add(welcomePage);
+        FirstPage firstPage = new FirstPage(frame);
+        frame.getContentPane().add(firstPage);
 
         frame.setVisible(true);
     }

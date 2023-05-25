@@ -1,58 +1,76 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class CurrentPage extends JPanel {
+    private static final int withdraw_limit = 50000;
+    private static final int deposit_limit = 50000;
+    private static final int default_balance = 100000;
+
+    BankAccount bankAccount = new BankAccount(default_balance);
+
 
     private JFrame frame;
+    private int currentBalance;
 
     public CurrentPage(JFrame frame) {
         this.frame = frame;
-        setLayout(new FlowLayout());
+        this.currentBalance = default_balance;
+        setLayout(new GridLayout(2, 1));
 
-        JLabel CurrentLabel = new JLabel("Current Account");
-        setSize(400, 400);
-        JButton depositButton = new JButton("DEPOSIT ");
-        JButton withdrawalButton = new JButton("WITHDRAW");
-
-
-
-        depositButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                showDepositPage();
-            }
-        });
+        JButton withdrawalButton = new JButton("Withdrawal");
         withdrawalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showWithdrawalPage();
+                handleTransaction("withdraw");
+            }
+        });
+        add(withdrawalButton);
+
+        JButton depositButton = new JButton("Deposit");
+        depositButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                handleTransaction("deposit");
             }
         });
         add(depositButton);
-        add(withdrawalButton);
     }
 
-    private void showDepositPage(){
-        frame.getContentPane().removeAll();
-        frame.getContentPane().revalidate();
-        frame.getContentPane().repaint();
+    private void handleTransaction(String transactionType) {
+        String amountString = JOptionPane.showInputDialog(frame, "Enter the amount:");
+        if (amountString == null || amountString.isEmpty()) {
+            return;
+        }
 
-// creating an object
-        DepositPage depositPage = new DepositPage(frame);
-        frame.getContentPane().add(depositPage);
-        frame.setVisible(true);
-    }
+        int amount = Integer.parseInt(amountString);
 
-    private void showWithdrawalPage(){
-        frame.getContentPane().removeAll();
-        frame.getContentPane().revalidate();
-        frame.getContentPane().repaint();
+        if (transactionType.equals("withdraw")) {
+            if (amount > withdraw_limit) {
+                JOptionPane.showMessageDialog(frame, "Exceeded withdrawal limit. Please try again.");
+                return;
+            }
 
-// creating an object
-        WithdrawalPage withdrawalPage = new WithdrawalPage(frame);
-        frame.getContentPane().add(withdrawalPage);
-        frame.setVisible(true);
+            if (amount > currentBalance) {
+                JOptionPane.showMessageDialog(frame, "Insufficient funds.");
+                return;
+            }
+
+            currentBalance -= amount;
+            // Write withdrawal transaction details to file
+            bankAccount.writeTransactionToFile(transactionType, amount, currentBalance);
+            JOptionPane.showMessageDialog(frame, "Withdrawal successful. Current balance: " + currentBalance);
+
+        } else if (transactionType.equals("deposit")) {
+            if (amount > deposit_limit) {
+                JOptionPane.showMessageDialog(frame, "Exceeded deposit limit. Please try again.");
+                return;
+            }
+
+            currentBalance += amount;
+            // Write deposit transaction details to file
+            bankAccount.writeTransactionToFile(transactionType, amount, currentBalance);
+            JOptionPane.showMessageDialog(frame, "Deposit successful. Current balance: " + currentBalance);
+        }
     }
 }
