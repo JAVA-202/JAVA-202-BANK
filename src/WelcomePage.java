@@ -13,10 +13,12 @@ public class WelcomePage extends JPanel {
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(titleLabel, BorderLayout.NORTH);
 
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new GridBagLayout());
 
         // SAVINGS BUTTON
         JButton savingsButton = new JButton("Savings");
+
         savingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -27,15 +29,39 @@ public class WelcomePage extends JPanel {
 
         // CURRENT BUTTON
         JButton currentButton = new JButton("Current");
+        currentButton.setAlignmentX(Component.CENTER_ALIGNMENT);
         currentButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 showAccountPage("Current");
             }
         });
-        buttonPanel.add(currentButton);
 
-        add(buttonPanel, BorderLayout.CENTER);
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.insets = new Insets(5, 5, 5, 5);
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            gbc.weighty = 1.0;
+            buttonPanel.add(Box.createVerticalGlue(), gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            buttonPanel.add(savingsButton, gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            buttonPanel.add(currentButton, gbc);
+
+            gbc.gridx = 0;
+            gbc.gridy = 0;
+            buttonPanel.add(Box.createVerticalGlue(), gbc);
+
+            add(buttonPanel, BorderLayout.CENTER);
+
+            buttonPanel.add(currentButton);
+
+            add(buttonPanel, BorderLayout.CENTER);
     }
 
     private void showAccountPage(String accountType) {

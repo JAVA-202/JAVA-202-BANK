@@ -16,25 +16,39 @@ public class CurrentPage extends JPanel {
     public CurrentPage(JFrame frame) {
         this.frame = frame;
         this.currentBalance = default_balance;
-        setLayout(new GridLayout(2, 1));
+        setLayout(new GridBagLayout());
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5,5,5,5);
 
         JButton withdrawalButton = new JButton("Withdrawal");
+        withdrawalButton.setPreferredSize(new Dimension(100, withdrawalButton.getPreferredSize().height));
         withdrawalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleTransaction("withdraw");
             }
         });
-        add(withdrawalButton);
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(withdrawalButton, gbc);
 
         JButton depositButton = new JButton("Deposit");
+        depositButton.setPreferredSize(new Dimension(100, depositButton.getPreferredSize().height));
         depositButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 handleTransaction("deposit");
             }
         });
-        add(depositButton);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(depositButton, gbc);
+        add(depositButton, gbc);
     }
 
     private void handleTransaction(String transactionType) {

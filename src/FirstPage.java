@@ -11,9 +11,12 @@ public class FirstPage extends JPanel {
 
     public FirstPage(JFrame frame) {
         this.frame = frame;
-        setLayout(new FlowLayout());
+        setLayout(new GridBagLayout());
 
-        JLabel pinLabel = new JLabel("Enter your PIN:");
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(15,5,15,5);
+
+        JLabel pinLabel = new JLabel("Enter your PIN ");
         pinField = new JTextField(10);
         JButton loginButton = new JButton("Login");
 
@@ -35,6 +38,20 @@ public class FirstPage extends JPanel {
                 }
             }
         });
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        add(pinLabel, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        add(pinField, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
+        add(loginButton, gbc);
 
         add(pinLabel);
         add(pinField);
