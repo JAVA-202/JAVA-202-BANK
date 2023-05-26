@@ -46,9 +46,9 @@ public class FirstPage extends JPanel {
         frame.getContentPane().revalidate();
         frame.getContentPane().repaint();
 
-        WelcomePage welcomePage = new WelcomePage(frame);
+        LandingPage landingPage = new LandingPage(frame);
+        frame.getContentPane().add(landingPage);
 
-        frame.getContentPane().add(welcomePage);
         frame.setVisible(true);
     }
 }
