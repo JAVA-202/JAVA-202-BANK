@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class SavingsPage extends JPanel {
-    private static final int withdraw_limit = 50000;
+    private static final int withdraw_limit = 20000;
     private static final int deposit_limit = 50000;
     private static final int default_balance = 100000;
 

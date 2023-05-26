@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2023-05-26 00:06:28 - withdraw: Amount=2000, Balance=98000
 2023-05-26 00:07:30 - withdraw: Amount=3111, Balance=96889
 2023-05-26 00:29:45 - deposit: Amount=1223, Balance=101223
@@ -6,3 +7,10 @@
 2023-05-26 00:58:17 - withdraw: Amount=123, Balance=100088
 2023-05-26 00:58:33 - withdraw: Amount=432, Balance=99568
 2023-05-26 00:58:40 - deposit: Amount=321, Balance=99889
+=======
+2023-05-25 23:08:26 - withdraw: Amount=4, Balance=99996
+2023-05-26 00:17:06 - withdraw: Amount=555, Balance=99445
+2023-05-26 00:22:05 - withdraw: Amount=30000, Balance=70000
+2023-05-26 00:22:39 - withdraw: Amount=30000, Balance=70000
+>>>>>>> 249f7d0c69211573fdac217af8f18fa26c4faf6d
+2023-05-26 11:16:08 - withdraw: Amount=323, Balance=99677
